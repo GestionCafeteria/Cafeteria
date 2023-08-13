@@ -26,8 +26,8 @@ public class PlatillosOrdenAdapter extends RecyclerView.Adapter<PlatillosOrdenAd
 
     @Override
     public ViewHolderPlatillosOrden onCreateViewHolder(ViewGroup parent, int viewType) {
-        int layout= R.layout.orden_platillo_item;
-        View view= LayoutInflater.from(parent.getContext()).inflate(layout,null,false);
+        int layout= R.layout.detalle_orden_item;
+        View view= LayoutInflater.from(parent.getContext()).inflate(layout,parent,false);
 
         view.setOnClickListener(this);
 

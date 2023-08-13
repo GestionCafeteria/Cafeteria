@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorMesaDisponible">#C5E1A5</color>
     <color name="colorMesaOcupada">#F5F5F5</color>
+    <color name="colorNaranjita">#FFF1E1</color>
+    <color name="gradient_start_color">#90CAF9</color>
+    <color name="gradient_end_color">#81D4FA</color>
 </resources>

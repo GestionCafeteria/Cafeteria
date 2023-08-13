@@ -27,10 +27,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class DetalleOrdenActivity extends AppCompatActivity {
 
+    TextView tv_mesero, tv_montoTotal, tv_estatus;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +41,12 @@ public class DetalleOrdenActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int id = intent.getIntExtra("idOrden", 0);
 
-        TextView editText = findViewById(R.id.textoa);
-        editText.setText("OLIS: " + id);
+        tv_mesero = findViewById(R.id.tv_mesero);
+        tv_montoTotal = findViewById(R.id.tv_montoTotal);
+        tv_estatus = findViewById(R.id.tv_estatus);
+
+        TextView editText = findViewById(R.id.titulo);
+        editText.setText("Detalle de la orden #" + id);
         listarDetalleOrden(id);
     }
 
@@ -81,6 +87,12 @@ public class DetalleOrdenActivity extends AppCompatActivity {
     }
 
     private void construirRecycler(ArrayList<OrdenPlatillo> listaOrdenesPlatillo) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+
+        tv_mesero.setText(listaOrdenesPlatillo.get(0).getNombreMesero());
+        tv_montoTotal.setText("$" + decimalFormat.format(listaOrdenesPlatillo.get(0).getTotal()));
+        tv_estatus.setText(listaOrdenesPlatillo.get(0).getEstatus());
+
         RecyclerView recyclerView = findViewById(R.id.platillosOrdenReciclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
