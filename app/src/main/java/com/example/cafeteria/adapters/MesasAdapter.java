@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cafeteria.R;
@@ -36,11 +38,10 @@ public class MesasAdapter extends RecyclerView.Adapter<MesasAdapter.ViewHolderMe
     public void onBindViewHolder(ViewHolderMesas holder, int position) {
         int color = 0;
         if (listaMesas.get(position).getEstado() == 0) {
-            color = Color.rgb(109, 209, 149);
+            holder.cardView.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.colorMesaDisponible));
         } else {
-            color = Color.rgb(227, 170, 120);
+            holder.cardView.setCardBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.colorMesaOcupada));
         }
-        holder.etiNombre.setBackgroundColor(color);
 
         String texto = "Mesa #" + listaMesas.get(position).getId();
         holder.etiNombre.setText(texto);
@@ -65,10 +66,12 @@ public class MesasAdapter extends RecyclerView.Adapter<MesasAdapter.ViewHolderMe
     public class ViewHolderMesas extends RecyclerView.ViewHolder {
 
         TextView etiNombre;
+        CardView cardView;
 
         public ViewHolderMesas(View itemView) {
             super(itemView);
             etiNombre= (TextView) itemView.findViewById(R.id.idNombre);
+            cardView = itemView.findViewById(R.id.cardView);
         }
     }
 

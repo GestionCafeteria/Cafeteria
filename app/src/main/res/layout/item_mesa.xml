@@ -1,23 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    app:cardUseCompatPadding="true"
+    android:layout_marginBottom="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp">
 
-    <ImageView
-        android:id="@+id/idImagen"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:src="@drawable/mesa"
-        android:layout_marginTop="10dp"/>
-
-    <TextView
-        android:id="@+id/idNombre"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nombre"
-        android:layout_gravity="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="10dp"/>
+        android:orientation="vertical"
+        android:padding="16dp" >
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/idImagen"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/mesa"
+            android:layout_gravity="center"
+            android:contentDescription="Imagen de Mesa"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/idNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mesa #"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -76,9 +77,14 @@ public class MainActivity extends AppCompatActivity {
         mesasAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Constantes.MESA_SELECCIONADA = listaMesas.get(recyclerView.getChildAdapterPosition(view)).getId();
-                Intent intent = new Intent(MainActivity.this, MenuActivity.class);
-                startActivity(intent);
+                if (listaMesas.get(recyclerView.getChildAdapterPosition(view)).getEstado() == 0) {
+                    Constantes.MESA_SELECCIONADA = listaMesas.get(recyclerView.getChildAdapterPosition(view)).getId();
+                    Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(MainActivity.this, "Esta mesa se encuentra ocupada por el momento", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
         recyclerView.setAdapter(mesasAdapter);
