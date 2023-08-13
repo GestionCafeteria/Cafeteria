@@ -37,7 +37,8 @@
             android:id="@+id/menuReciclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:layout_marginBottom="?android:attr/actionBarSize"/>
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
