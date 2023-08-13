@@ -31,7 +31,7 @@ public class PlatillosAdapter extends RecyclerView.Adapter<PlatillosAdapter.View
     @Override
     public ViewHolderPlatillos onCreateViewHolder(ViewGroup parent, int viewType) {
         int layout= R.layout.item_platillo;
-        View view= LayoutInflater.from(parent.getContext()).inflate(layout,null,false);
+        View view= LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
 
         view.setOnClickListener(this);
 
