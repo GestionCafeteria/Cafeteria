@@ -42,7 +42,7 @@ public class OrdenesAdapter extends RecyclerView.Adapter<OrdenesAdapter.ViewHold
     @Override
     public ViewHolderOrdenes onCreateViewHolder(ViewGroup parent, int viewType) {
         int layout = R.layout.orden_platillo_item;
-        View view = LayoutInflater.from(parent.getContext()).inflate(layout, null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
 
         view.setOnClickListener(this);
 

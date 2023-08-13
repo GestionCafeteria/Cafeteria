@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/border_background" >
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="2dp"
+    app:cardBackgroundColor="@color/colorNaranjita"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -80,10 +84,6 @@
                     android:padding="2dp" />
             </LinearLayout>
 
-
-
-
-
         </LinearLayout>
 
         <LinearLayout
@@ -120,13 +120,10 @@
                     android:layout_height="wrap_content"
                     android:text="Entrgado" />
 
-
             </RelativeLayout>
-
 
         </LinearLayout>
 
-
     </LinearLayout>
 
-</LinearLayout>
+</androidx.cardview.widget.CardView>

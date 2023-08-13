@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -112,15 +113,21 @@ public class CocineroActivity extends AppCompatActivity {
                 });
 
         queue.add(jsonArrayRequest);
-        Log.d("RETURN", "listarOrdenesPorMeseroEstatus: ");
     }
 
     private void construirRecycler(ArrayList<Orden> listaOrdenes) {
-        Log.d("TAG", "construirRecycler: ");
         RecyclerView recyclerView = findViewById(R.id.ordenesReciclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         OrdenesAdapter ordenesAdapter = new OrdenesAdapter(listaOrdenes, this);
+        ordenesAdapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CocineroActivity.this, DetalleOrdenActivity.class);
+                intent.putExtra("idOrden", listaOrdenes.get(recyclerView.getChildAdapterPosition(view)).getIdOrden());
+                startActivity(intent);
+            }
+        });
         recyclerView.setAdapter(ordenesAdapter);
     }
 }

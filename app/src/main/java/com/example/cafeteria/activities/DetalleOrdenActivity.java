@@ -89,9 +89,11 @@ public class DetalleOrdenActivity extends AppCompatActivity {
     private void construirRecycler(ArrayList<OrdenPlatillo> listaOrdenesPlatillo) {
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
 
-        tv_mesero.setText(listaOrdenesPlatillo.get(0).getNombreMesero());
-        tv_montoTotal.setText("$" + decimalFormat.format(listaOrdenesPlatillo.get(0).getTotal()));
-        tv_estatus.setText(listaOrdenesPlatillo.get(0).getEstatus());
+        if (listaOrdenesPlatillo.size() > 0) {
+            tv_mesero.setText(listaOrdenesPlatillo.get(0).getNombreMesero());
+            tv_montoTotal.setText("$" + decimalFormat.format(listaOrdenesPlatillo.get(0).getTotal()));
+            tv_estatus.setText(listaOrdenesPlatillo.get(0).getEstatus());
+        }
 
         RecyclerView recyclerView = findViewById(R.id.platillosOrdenReciclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
