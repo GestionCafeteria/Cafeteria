@@ -12,4 +12,10 @@
     <color name="colorNaranjita">#FFF1E1</color>
     <color name="gradient_start_color">#90CAF9</color>
     <color name="gradient_end_color">#81D4FA</color>
+    <color name="background_color_gray">#ECEFF1</color>
+    <color name="background_color_cream">#FFF9E1</color>
+    <color name="background_color_aqua">#B2DFDB</color>
+    <color name="background_color_lavender">#D1C4E9</color>
+    <color name="background_color_pale_pink">#F48FB1</color>
+    <color name="background_color_beige">#FFECB3</color>
 </resources>

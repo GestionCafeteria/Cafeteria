@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    android:background="@drawable/custom_order_background">
+    android:background="@drawable/gradient_background" >
 
     <TextView
         android:id="@+id/titulo"
@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
-        android:textColor="@android:color/white"
         android:text=""
         android:layout_gravity="center"
         android:textSize="30sp"
@@ -27,7 +26,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
             android:text="Mesero que atiende: "
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -36,7 +34,6 @@
             android:id="@+id/tv_mesero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
             android:text=""
             android:textSize="15sp" />
     </LinearLayout>
@@ -50,7 +47,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
             android:text="Monto total de la orden: "
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -59,7 +55,6 @@
             android:id="@+id/tv_montoTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
             android:text=""
             android:textSize="15sp" />
     </LinearLayout>
@@ -73,7 +68,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
             android:text="Estatus actual de la orden: "
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -82,7 +76,6 @@
             android:id="@+id/tv_estatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
             android:text=""
             android:textSize="15sp" />
     </LinearLayout>
