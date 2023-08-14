@@ -9,6 +9,11 @@
         <item>Entregadas</item>
         <item>Cerradas</item>
     </string-array>
+    <string-array name="opcionesRol">
+        <item>Administrador</item>
+        <item>Mesero</item>
+        <item>Cocinero</item>
+    </string-array>
     <string name="title_activity_menu_lateral">MenuLateralActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
