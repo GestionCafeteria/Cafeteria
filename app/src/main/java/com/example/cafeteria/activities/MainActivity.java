@@ -15,6 +15,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cafeteria.adapters.MesasAdapter;
 import com.example.cafeteria.R;
@@ -82,8 +83,10 @@ public class MainActivity extends AppCompatActivity {
         mesasAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String idMesa = listaMesas.get(recyclerView.getChildAdapterPosition(view)).getId();
                 if (listaMesas.get(recyclerView.getChildAdapterPosition(view)).getEstado() == 0) {
-                    Constantes.MESA_SELECCIONADA = listaMesas.get(recyclerView.getChildAdapterPosition(view)).getId();
+                    Constantes.MESA_SELECCIONADA = idMesa;
+                    actualizarEstadoMesa(idMesa, 1);
                     Intent intent = new Intent(MainActivity.this, MenuActivity.class);
                     startActivity(intent);
                 } else {
@@ -99,5 +102,40 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View view) {
         Intent intent = new Intent(MainActivity.this, Login.class);
         startActivity(intent);
+    }
+
+    public void actualizarEstadoMesa(String id, int estatus) {
+        String url = Constantes.URL_BASE + "mesa.php";
+
+        JSONObject loginData = new JSONObject();
+        try {
+            loginData.put("idMesa", id);
+            loginData.put("nuevoEstatus", estatus);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, url, loginData,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String mensaje = response.getString("mensaje");
+                            Toast.makeText(MainActivity.this, mensaje, Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MainActivity.this, "Error inesperado: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.d("ERROR", error.toString());
+                    }
+                });
+        queue.add(jsonObjectRequest);
     }
 }
