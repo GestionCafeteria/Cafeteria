@@ -17,6 +17,17 @@
         android:textSize="30sp"
         android:textStyle="bold" />
 
+    <Button
+        android:id="@+id/btn_cerrarOrden"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cerrar Orden"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:elevation="4dp"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

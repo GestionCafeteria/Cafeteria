@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -33,6 +35,7 @@ import java.util.ArrayList;
 public class DetalleOrdenActivity extends AppCompatActivity {
 
     TextView tv_mesero, tv_montoTotal, tv_estatus;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,10 +43,18 @@ public class DetalleOrdenActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         int id = intent.getIntExtra("idOrden", 0);
+        String origen = intent.getStringExtra("origen");
 
         tv_mesero = findViewById(R.id.tv_mesero);
         tv_montoTotal = findViewById(R.id.tv_montoTotal);
         tv_estatus = findViewById(R.id.tv_estatus);
+
+        Button cerrarCuenta = findViewById(R.id.btn_cerrarOrden);
+        if (origen.equals("C")) {
+            cerrarCuenta.setVisibility(View.VISIBLE);
+        } else {
+            cerrarCuenta.setVisibility(View.GONE);
+        }
 
         TextView editText = findViewById(R.id.titulo);
         editText.setText("Detalle de la orden #" + id);

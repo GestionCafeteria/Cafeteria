@@ -49,7 +49,6 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         listarPlatillos();
-        //construirRecycler(listaPlatilos);
     }
 
     public void listarPlatillos() {
@@ -86,13 +85,6 @@ public class MenuActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         PlatillosAdapter platillosAdapter = new PlatillosAdapter(listaPlatilos, textViewTotal);
-        /*platillosAdapter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ClienteActivity.class);
-                startActivity(intent);
-            }
-        });*/
         recyclerView.setAdapter(platillosAdapter);
     }
 
@@ -140,9 +132,13 @@ public class MenuActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = response.getJSONObject(0);
                             String mensaje = jsonObject.getString("mensaje");
+                            int idOrden = jsonObject.getInt("idOrden");
 
                             Toast.makeText(MenuActivity.this, mensaje, Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(MenuActivity.this, MenuActivity.class);
+
+                            Intent intent = new Intent(MenuActivity.this, DetalleOrdenActivity.class);
+                            intent.putExtra("idOrden", idOrden);
+                            intent.putExtra("origen", "C");
                             startActivity(intent);
                         } catch (JSONException e) {
                             Log.e("JSONException", "ERROR: " + e.getMessage());

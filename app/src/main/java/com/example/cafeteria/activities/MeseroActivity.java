@@ -143,6 +143,7 @@ public class MeseroActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MeseroActivity.this, DetalleOrdenActivity.class);
                 intent.putExtra("idOrden", listaOrdenes.get(recyclerView.getChildAdapterPosition(view)).getIdOrden());
+                intent.putExtra("origen", "E");
                 startActivity(intent);
             }
         });

@@ -19,6 +19,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.cafeteria.adapters.MesasAdapter;
 import com.example.cafeteria.R;
 import com.example.cafeteria.models.Mesa;
+import com.example.cafeteria.models.Usuario;
 import com.example.cafeteria.services.MyBackgroundService;
 import com.example.cafeteria.services.OrdenService;
 import com.example.cafeteria.utils.Constantes;
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Constantes.usuario = new Usuario();
+        Constantes.usuario.setId(0);
         // En una actividad, por ejemplo, en el método onCreate()
         /*Intent serviceIntent = new Intent(this, MyBackgroundService.class);
         startService(serviceIntent);*/
