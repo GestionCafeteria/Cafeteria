@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -28,6 +29,7 @@ import com.example.cafeteria.adapters.PlatillosAdapter;
 import com.example.cafeteria.models.Mesa;
 import com.example.cafeteria.models.Orden;
 import com.example.cafeteria.models.Platillo;
+import com.example.cafeteria.models.Usuario;
 import com.example.cafeteria.services.OrdenService;
 import com.example.cafeteria.utils.Constantes;
 
@@ -39,11 +41,13 @@ import java.util.ArrayList;
 
 public class MeseroActivity extends AppCompatActivity {
 
+    TextView emptyTextView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mesero);
 
+        emptyTextView = findViewById(R.id.emptyTextView);
         Button actualizar = findViewById(R.id.btn_contrasena);
         actualizar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,7 +131,6 @@ public class MeseroActivity extends AppCompatActivity {
                 });
 
         queue.add(jsonArrayRequest);
-        Log.d("RETURN", "listarOrdenesPorMeseroEstatus: ");
     }
 
     private void construirRecycler(ArrayList<Orden> listaOrdenes) {
@@ -144,5 +147,13 @@ public class MeseroActivity extends AppCompatActivity {
             }
         });
         recyclerView.setAdapter(ordenesAdapter);
+
+        if (ordenesAdapter.getItemCount() == 0) {
+            recyclerView.setVisibility(View.GONE);
+            emptyTextView.setVisibility(View.VISIBLE);
+        } else {
+            recyclerView.setVisibility(View.VISIBLE);
+            emptyTextView.setVisibility(View.GONE);
+        }
     }
 }

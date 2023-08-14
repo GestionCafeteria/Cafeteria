@@ -32,4 +32,15 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp" />
 
+    <TextView
+        android:id="@+id/emptyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="No hay ordenes por aqui"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:visibility="gone"
+        android:background="@color/colorNaranjita"/>
 </LinearLayout>
