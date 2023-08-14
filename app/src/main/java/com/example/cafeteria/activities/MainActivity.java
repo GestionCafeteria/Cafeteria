@@ -40,11 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         Constantes.usuario = new Usuario();
         Constantes.usuario.setId(0);
-        // En una actividad, por ejemplo, en el método onCreate()
-        /*Intent serviceIntent = new Intent(this, MyBackgroundService.class);
-        startService(serviceIntent);*/
 
-        new OrdenService(this).listarOrdenesPorMeseroEstatus(2, 0);
         listarMesasDisponibles();
     }
 
@@ -60,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject jsonObject = response.getJSONObject(i);
-                                mesas.add(new Mesa(jsonObject.getString("id"), jsonObject.getInt("estado")));
+                                mesas.add(new Mesa(jsonObject.getString("id"), jsonObject.getInt("estado"), jsonObject.getInt("mesero_id"), jsonObject.getString("nombre")));
                             }
                             construirRecycler(mesas);
                         } catch (JSONException e) {

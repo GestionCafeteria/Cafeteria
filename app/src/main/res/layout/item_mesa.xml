@@ -24,7 +24,7 @@
             android:src="@drawable/mesa"
             android:layout_gravity="center"
             android:contentDescription="Imagen de Mesa"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="8dp" />
 
         <TextView
             android:id="@+id/idNombre"
@@ -33,7 +33,31 @@
             android:text="Mesa #"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:text="Atiende:"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_mesero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

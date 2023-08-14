@@ -45,6 +45,7 @@ public class MesasAdapter extends RecyclerView.Adapter<MesasAdapter.ViewHolderMe
 
         String texto = "Mesa #" + listaMesas.get(position).getId();
         holder.etiNombre.setText(texto);
+        holder.tv_mesero.setText(listaMesas.get(position).getNombreMesero());
     }
 
     @Override
@@ -65,12 +66,13 @@ public class MesasAdapter extends RecyclerView.Adapter<MesasAdapter.ViewHolderMe
 
     public class ViewHolderMesas extends RecyclerView.ViewHolder {
 
-        TextView etiNombre;
+        TextView etiNombre, tv_mesero;
         CardView cardView;
 
         public ViewHolderMesas(View itemView) {
             super(itemView);
             etiNombre= (TextView) itemView.findViewById(R.id.idNombre);
+            tv_mesero= (TextView) itemView.findViewById(R.id.tv_mesero);
             cardView = itemView.findViewById(R.id.cardView);
         }
     }
