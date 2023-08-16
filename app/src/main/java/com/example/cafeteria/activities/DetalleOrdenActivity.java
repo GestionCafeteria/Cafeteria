@@ -57,6 +57,7 @@ public class DetalleOrdenActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     actualizarEstadoMesa(Constantes.MESA_SELECCIONADA, 0);
+                    actualizarOrden(id, 6);
                     Intent intent = new Intent(DetalleOrdenActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
@@ -156,5 +157,40 @@ public class DetalleOrdenActivity extends AppCompatActivity {
                     }
                 });
         queue.add(jsonObjectRequest);
+    }
+
+    private void actualizarOrden(int idOrden, int nuevoEstatus) {
+        RequestQueue queue = Volley.newRequestQueue(DetalleOrdenActivity.this);
+
+        String url = Constantes.URL_BASE + "orden.php";
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("idOrden", idOrden);
+            jsonObject.put("nuevoEstatus", nuevoEstatus);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, url, jsonObject,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            Toast.makeText(DetalleOrdenActivity.this, response.getString("mensaje"), Toast.LENGTH_SHORT).show();
+                            Log.d("onResponse-actualizarOrden", "RESPUESTA: " + response.getString("mensaje"));
+                        } catch (JSONException e) {
+                            Log.e("JSONException", "Error: " + e.getMessage());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("VolleyError", "Error: " + error.getMessage());
+                    }
+                });
+
+        queue.add(request);
     }
 }

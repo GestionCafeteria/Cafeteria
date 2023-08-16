@@ -1,7 +1,5 @@
 package com.example.cafeteria.adapters;
 
-import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,25 +9,24 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cafeteria.R;
-import com.example.cafeteria.models.Mesa;
 import com.example.cafeteria.models.Platillo;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class PlatillosAdapter extends RecyclerView.Adapter<PlatillosAdapter.ViewHolderPlatillos> implements View.OnClickListener{
+public class BebidasAdapter extends RecyclerView.Adapter<BebidasAdapter.ViewHolderPlatillos> implements View.OnClickListener{
 
-    ArrayList<Platillo> listaPlatillos;
+    ArrayList<Platillo> listaBebidas;
     TextView textViewTotal;
     private View.OnClickListener listener;
 
-    public PlatillosAdapter(ArrayList<Platillo> listaPlatillos, TextView textViewTotal) {
-        this.listaPlatillos = listaPlatillos;
+    public BebidasAdapter(ArrayList<Platillo> listaPlatillos, TextView textViewTotal) {
+        this.listaBebidas = listaPlatillos;
         this.textViewTotal = textViewTotal;
     }
 
-    public PlatillosAdapter(ArrayList<Platillo> listaPlatillos) {
-        this.listaPlatillos = listaPlatillos;
+    public BebidasAdapter(ArrayList<Platillo> listaPlatillos) {
+        this.listaBebidas = listaPlatillos;
     }
 
     @Override
@@ -45,7 +42,7 @@ public class PlatillosAdapter extends RecyclerView.Adapter<PlatillosAdapter.View
     @Override
     public void onBindViewHolder(ViewHolderPlatillos holder, int position) {
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
-        Platillo item = listaPlatillos.get(position);
+        Platillo item = listaBebidas.get(position);
 
         holder.itemNameTextView.setText(item.getNombre());
         holder.itemPriceTextView.setText("$" + decimalFormat.format(item.getPrecio()) + " c/u");
@@ -77,7 +74,7 @@ public class PlatillosAdapter extends RecyclerView.Adapter<PlatillosAdapter.View
 
     @Override
     public int getItemCount() {
-        return listaPlatillos.size();
+        return listaBebidas.size();
     }
 
     public void setOnClickListener(View.OnClickListener listener){
