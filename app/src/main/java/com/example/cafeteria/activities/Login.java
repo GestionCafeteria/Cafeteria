@@ -46,6 +46,12 @@ public class Login extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Login.this, MainActivity.class);
+        startActivity(intent);
+    }
+
     public void login(String username, String password) {
         String url = Constantes.URL_BASE + "usuario.php";
 

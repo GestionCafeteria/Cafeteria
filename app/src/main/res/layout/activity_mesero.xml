@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="20dp"
-    android:background="@drawable/gradient_background">
-
-    <Button
-        android:id="@+id/btn_contrasena"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cambiar contraseña"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
-        android:elevation="4dp"
-        android:layout_marginBottom="20dp" />
+    android:background="@drawable/gradient_background" >
 
     <Spinner
         android:id="@+id/spinner"
@@ -24,24 +15,91 @@
         android:elevation="4dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:layout_marginBottom="20dp"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ordenesReciclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp" />
+        android:layout_below="@id/spinner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
 
-    <TextView
-        android:id="@+id/emptyTextView"
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab_main"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:icon="@mipmap/drinks"
+        android:text="Opciones"
+        app:backgroundTint="@color/colorNaranjita"
+        app:rippleColor="@color/black" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fab_options"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="No hay ordenes por aqui"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:visibility="gone"
-        android:background="@color/colorNaranjita"/>
-</LinearLayout>
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/fab_main"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="gone">
+
+        <!-- Botón Opción 1 -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_option1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/pencil"
+            app:backgroundTint="@color/colorNaranjita"
+            app:rippleColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
+
+        <!-- Etiqueta para Botón Opción 1 -->
+        <TextView
+            android:id="@+id/label_option1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cambiar Contraseña"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toBottomOf="@id/fab_option1"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/background_color_aqua"
+            android:layout_marginTop="4dp" />
+
+        <!-- Botón Opción 2 -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_option2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/exit"
+            app:backgroundTint="@color/colorNaranjita"
+            app:rippleColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/label_option1"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp" />
+
+        <!-- Etiqueta para Botón Opción 2 -->
+        <TextView
+            android:id="@+id/label_option2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cerrar Sesión"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toBottomOf="@id/fab_option2"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/background_color_aqua"
+            android:layout_marginTop="4dp" />
+
+        <!-- Agregar más botones flotantes y etiquetas según tus necesidades -->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

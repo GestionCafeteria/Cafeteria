@@ -1,6 +1,7 @@
 package com.example.cafeteria.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,6 +33,8 @@ import com.example.cafeteria.models.Platillo;
 import com.example.cafeteria.models.Usuario;
 import com.example.cafeteria.services.OrdenService;
 import com.example.cafeteria.utils.Constantes;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,20 +44,41 @@ import java.util.ArrayList;
 
 public class MeseroActivity extends AppCompatActivity {
 
+    private boolean isExpanded = false;
+    private ExtendedFloatingActionButton fabMain;
+    private ConstraintLayout fabOptions;
+
     TextView emptyTextView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mesero);
 
-        emptyTextView = findViewById(R.id.emptyTextView);
-        Button actualizar = findViewById(R.id.btn_contrasena);
-        actualizar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MeseroActivity.this, CambioContrasenaActivity.class);
-                startActivity(intent);
+        fabMain = findViewById(R.id.fab_main);
+        fabOptions = findViewById(R.id.fab_options);
+
+        fabMain.setOnClickListener(view -> {
+            if (isExpanded) {
+                fabOptions.setVisibility(View.GONE);
+                isExpanded = false;
+            } else {
+                fabOptions.setVisibility(View.VISIBLE);
+                isExpanded = true;
             }
+        });
+
+        FloatingActionButton fabOption1 = findViewById(R.id.fab_option1);
+        FloatingActionButton fabOption2 = findViewById(R.id.fab_option2);
+
+        fabOption1.setOnClickListener(view -> {
+            Intent intent = new Intent(MeseroActivity.this, CambioContrasenaActivity.class);
+            startActivity(intent);
+        });
+
+        fabOption2.setOnClickListener(view -> {
+            Intent intent = new Intent(MeseroActivity.this, Login.class);
+            Constantes.usuario = null;
+            startActivity(intent);;
         });
 
         Spinner spinner = findViewById(R.id.spinner);
@@ -155,10 +179,10 @@ public class MeseroActivity extends AppCompatActivity {
 
         if (ordenesAdapter.getItemCount() == 0) {
             recyclerView.setVisibility(View.GONE);
-            emptyTextView.setVisibility(View.VISIBLE);
+            //emptyTextView.setVisibility(View.VISIBLE);
         } else {
             recyclerView.setVisibility(View.VISIBLE);
-            emptyTextView.setVisibility(View.GONE);
+            //emptyTextView.setVisibility(View.GONE);
         }
     }
 }
