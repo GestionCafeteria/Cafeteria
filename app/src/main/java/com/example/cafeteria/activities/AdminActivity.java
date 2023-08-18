@@ -1,7 +1,9 @@
 package com.example.cafeteria.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +23,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cafeteria.R;
 import com.example.cafeteria.utils.Constantes;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,6 +35,9 @@ public class AdminActivity extends AppCompatActivity {
     Spinner spinner;
     int rol;
 
+    private boolean isExpanded = false;
+    private ExtendedFloatingActionButton fabMain;
+    private ConstraintLayout fabOptions;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +48,7 @@ public class AdminActivity extends AppCompatActivity {
         pass = findViewById(R.id.et_password);
 
         TextView txtPrincipal = findViewById(R.id.txt_principal);
-        txtPrincipal.setText("¡Hola! " + Constantes.usuario.getNombre() + "... ¿Que deseas hacer hoy?");
+        txtPrincipal.setText("¡Bienvenido " + Constantes.usuario.getNombre() + "!");
 
         Button registrar = findViewById(R.id.btn_registrar);
         registrar.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +84,33 @@ public class AdminActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
+        });
+
+        fabMain = findViewById(R.id.fab_main);
+        fabOptions = findViewById(R.id.fab_options);
+
+        fabMain.setOnClickListener(view -> {
+            if (isExpanded) {
+                fabOptions.setVisibility(View.GONE);
+                isExpanded = false;
+            } else {
+                fabOptions.setVisibility(View.VISIBLE);
+                isExpanded = true;
+            }
+        });
+
+        FloatingActionButton fabOption1 = findViewById(R.id.fab_option1);
+        FloatingActionButton fabOption2 = findViewById(R.id.fab_option2);
+
+        fabOption1.setOnClickListener(view -> {
+            Intent intent = new Intent(AdminActivity.this, CambioContrasenaActivity.class);
+            startActivity(intent);
+        });
+
+        fabOption2.setOnClickListener(view -> {
+            Intent intent = new Intent(AdminActivity.this, Login.class);
+            Constantes.usuario = null;
+            startActivity(intent);;
         });
     }
 
