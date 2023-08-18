@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void construirRecycler(ArrayList<Mesa> listaMesas) {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.myReciclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,3));
+        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
 
         MesasAdapter mesasAdapter = new MesasAdapter(listaMesas);
         mesasAdapter.setOnClickListener(new View.OnClickListener() {
