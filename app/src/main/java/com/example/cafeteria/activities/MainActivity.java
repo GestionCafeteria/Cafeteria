@@ -84,15 +84,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String idMesa = listaMesas.get(recyclerView.getChildAdapterPosition(view)).getId();
-                if (listaMesas.get(recyclerView.getChildAdapterPosition(view)).getEstado() == 0) {
-                    Constantes.MESA_SELECCIONADA = idMesa;
-                    actualizarEstadoMesa(idMesa, 1);
-                    Intent intent = new Intent(MainActivity.this, MenuActivity.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(MainActivity.this, "Esta mesa se encuentra ocupada por el momento", Toast.LENGTH_SHORT).show();
-                }
-
+                disponibilidadMesa(idMesa);
             }
         });
         recyclerView.setAdapter(mesasAdapter);
@@ -137,5 +129,39 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
         queue.add(jsonObjectRequest);
+    }
+
+    public void disponibilidadMesa(String idMesa) {
+        String url = Constantes.URL_BASE + "mesa.php?tipoConsulta=estatus&idMesa=" + idMesa;
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            if (response.getInt("estado") == 0) {
+                                Constantes.MESA_SELECCIONADA = idMesa;
+                                actualizarEstadoMesa(idMesa, 1);
+                                Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(MainActivity.this, "Esta mesa se encuentra ocupada por el momento", Toast.LENGTH_SHORT).show();
+                                recreate();
+                            }
+                            Log.d("onResponse-actualizarOrden", "RESPUESTA: " + response.getString("mensaje"));
+                        } catch (JSONException e) {
+                            Log.e("JSONException", "Error: " + e.getMessage());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("VolleyError", "Error: " + error.getMessage());
+                    }
+                });
+
+        queue.add(request);
     }
 }

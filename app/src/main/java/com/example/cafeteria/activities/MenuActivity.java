@@ -90,12 +90,6 @@ public class MenuActivity extends AppCompatActivity {
             showInputDialog();
         });
 
-        /*extraFButton = findViewById(R.id.extraFButton);
-        fabButton.setOnClickListener(view -> {
-            Toast.makeText(MenuActivity.this, "MENSAJILLO", Toast.LENGTH_SHORT).show();
-        });
-        extraFButton.setVisibility(View.GONE);*/
-
         platillos_RV = findViewById(R.id.platillosReciclerView);
         bebidas_RV = findViewById(R.id.bebidasReciclerView);
         extras_RV = findViewById(R.id.extrasReciclerView);
@@ -180,7 +174,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void listarPlatillos() {
-        Log.i("listarPlatillos", "construirRecycler: ");
+
         String url = Constantes.URL_BASE + "platillo.php?categoria=1";
 
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -218,7 +212,6 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void listarBebidas() {
-        Log.i("listarPlatillos", "construirRecycler: ");
         String url = Constantes.URL_BASE + "platillo.php?categoria=2";
 
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -368,7 +361,6 @@ public class MenuActivity extends AppCompatActivity {
                     String inputData = editText.getText().toString();
 
                     verificarExistenciaPlatillo(inputData);
-                    // Aquí puedes hacer algo con los datos capturados
                 })
                 .setNegativeButton("Cancelar", null)
                 .show();
@@ -388,7 +380,6 @@ public class MenuActivity extends AppCompatActivity {
                             }
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject jsonObject = response.getJSONObject(i);
-                                Log.i("DEBUGGEOZZ", "onResponse: " + jsonObject.getString("descripcion") + " > " + jsonObject.getDouble("precio") + " > " + jsonObject.getString("menu_desc"));
 
                                 if (!verificarExistenciaListas(jsonObject.getInt("id"))) {
                                     listaExtras.add(new Platillo(jsonObject.getInt("id"), jsonObject.getString("descripcion"), jsonObject.getDouble("precio"), jsonObject.getString("menu_desc"), jsonObject.getInt("categoria_id")));
