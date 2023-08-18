@@ -44,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:text="Platillos"
                 android:textStyle="bold"
+                android:textColor="@color/black"
                 android:layout_marginStart="10dp"
                 android:textSize="16sp" />
 
@@ -73,6 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Bebidas"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_marginStart="10dp"
                 android:textSize="16sp" />
@@ -102,6 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Extras"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_marginStart="10dp"
                 android:textSize="16sp" />
@@ -164,8 +167,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:textSize="18sp"
+            android:textColor="@color/black"
             android:layout_marginStart="5dp"
             android:text="Total: $" />
 
