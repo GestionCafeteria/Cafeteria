@@ -80,6 +80,10 @@ public class AdminActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+    }
+
     private void limpiarCampos() {
         spinner.setSelection(0);
         this.nombre.setText("");

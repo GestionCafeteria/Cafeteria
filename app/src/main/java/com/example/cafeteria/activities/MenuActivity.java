@@ -157,6 +157,9 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+    }
     public void ocultarElementosTab() {
         ordenarFButton.setVisibility(View.GONE);
 

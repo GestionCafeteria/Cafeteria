@@ -98,6 +98,10 @@ public class MeseroActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+    }
+
     public void listarOrdenesPorMeseroEstatus(int mesero, int estado) {
         String url = Constantes.URL_BASE + "orden.php?mesero=" + mesero + "&estado=" + estado;
         ArrayList<Orden> ordenes = new ArrayList<>();
