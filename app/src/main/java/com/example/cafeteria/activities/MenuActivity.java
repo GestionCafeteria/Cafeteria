@@ -83,7 +83,7 @@ public class MenuActivity extends AppCompatActivity {
 
         listarPlatillos();
         listarBebidas();
-        construirExtrasRecycler(listaExtras);
+        listarExtras();
 
         ordenarFButton = findViewById(R.id.ordenarFButton);
         ordenarFButton.setOnClickListener(view -> {
@@ -383,13 +383,42 @@ public class MenuActivity extends AppCompatActivity {
                             }
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject jsonObject = response.getJSONObject(i);
-
+                                Log.i("verificarExistenciaPlatillo", "onResponse: " + jsonObject.getInt("id"));
                                 if (!verificarExistenciaListas(jsonObject.getInt("id"))) {
                                     listaExtras.add(new Platillo(jsonObject.getInt("id"), jsonObject.getString("descripcion"), jsonObject.getDouble("precio"), jsonObject.getString("menu_desc"), jsonObject.getInt("categoria_id")));
                                     extrasAdapter.notifyDataSetChanged();
                                 }
 
                             }
+                        } catch (JSONException e) {
+                            Log.e("JSONException", "Error en la respuesta del servidor: " + e.getMessage());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("onErrorResponse", "id: " + error.getMessage() + " --> " + url);
+                    }
+                });
+
+        queue.add(jsonArrayRequest);
+    }
+
+    public void listarExtras() {
+        String url = Constantes.URL_BASE + "platillo.php?categoria=3";
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonObject = response.getJSONObject(i);
+                                listaExtras.add(new Platillo(jsonObject.getInt("id"), jsonObject.getString("descripcion"), jsonObject.getDouble("precio"), jsonObject.getString("menu_desc"), jsonObject.getInt("categoria_id")));
+                            }
+                            construirExtrasRecycler(listaExtras);
                         } catch (JSONException e) {
                             Log.e("JSONException", "Error en la respuesta del servidor: " + e.getMessage());
                         }
@@ -414,6 +443,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private boolean verificarExistenciaListas(int idABuscar) {
+        Log.i("verificarExistenciaListas", "INICIA verificarExistenciaListas: " + idABuscar);
         for (Platillo platillo : listaPlatillos) {
             if (platillo.getId() == idABuscar) {
                 Toast.makeText(MenuActivity.this, "El platillo ingresado ya existe en el menú de platillos actuales", Toast.LENGTH_SHORT).show();
